@@ -1,4 +1,4 @@
-# Mongo-express
+# Mongo-express-K8s-Cluster
 Complete app setup with `Kubernetes` components.<br>
 First we have to create `Secret`<br>
 In the Secret config file the value of `username` and `password` must be base 64 encoded value.<br>
