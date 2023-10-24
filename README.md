@@ -1,1 +1,36 @@
 # Mongo-express
+Complete app setup with `Kubernetes` components
+First we have to create `Secret`
+In the Secret config file the value of `username` and `password` must be base 64 encoded value.
+In order to encode values, 
+```
+echo -n 'value' | base64
+```
+Take the value and paste into the secret username, and password. 
+To create Secret,
+```
+kubectl apply -f mongo-secret.yaml
+```
+In the mongo.yaml configuration file,
+The code before `---` is the deployment configuration code 
+The code before `---` is services configuration code
+Now to cereate the `mongo deployment` and `Internal service` (inorder to communicate with the pod) by configuration file.
+```
+kubectl apply -f mongo.yaml
+```
+In the next step,
+To create the `configmap`
+```
+kubectl apply -f mongo-config.yaml
+```
+Now to cereate the `mongo-express deployment` and `External service`  by configuration file.
+```
+kubectl apply -f mongo-express.yaml
+```
+
+When working with minikube, External IP is not assign to external service.
+To assign external service, a Public IP address 
+```
+minikube service mongo-express-service
+```
+It assigns the IP address in the nodePort that we assign to external service.
